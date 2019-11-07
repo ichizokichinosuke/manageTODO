@@ -83,4 +83,11 @@ td.add_task {
     font-size: 20px;
     color: red;
     margin: 10px;
+    text-align: center;
+}
+
+.delete_confirm {
+    font-size: 15px;
+    padding: 5px 20px;
+    margin: 10px;
 }
