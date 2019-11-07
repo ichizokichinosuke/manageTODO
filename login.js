@@ -19,6 +19,7 @@ function fieldChanged() {
 
 // フィールドを取得する関数
 function getField(fieldName){
+    // ここで要素をIdごとに抽出するから，inputタグにidを追加した
     var field = document.getElementById(fieldName);
     if(field == undefined){
         throw new Error("Element was not found: " + fieldName);
