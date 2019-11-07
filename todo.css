@@ -11,6 +11,12 @@ hr {
     margin-bottom: 8px;
 }
 
+.welcome {
+    font-size: 20px;
+    color: black;
+    margin: 10px;
+ }
+
 /* ページ固有のスタイル */
 /* ログインページ */
 th.login_field {
@@ -49,4 +55,25 @@ th.table_contents {
 td.table_button {
     padding: 20px 18px;
     background-color: skyblue;
+}
+
+/* add.html */
+th.add_task {
+    padding: 10px;
+    color: white;   
+    background-color: slateblue;
+    text-align: center;
+}
+
+td.add_task {
+    padding: 10px;
+    background-color: skyblue;
+    text-align: center;
+}
+
+.input_box {
+    width: 90%;
+    /* height: 90%; */
+    font-size: 20px;
+
 }
