@@ -77,3 +77,10 @@ td.add_task {
     font-size: 20px;
 
 }
+
+/* edit.html */
+.delete_text {
+    font-size: 20px;
+    color: red;
+    margin: 10px;
+}
