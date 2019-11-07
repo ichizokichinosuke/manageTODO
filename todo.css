@@ -17,6 +17,13 @@ hr {
     margin: 10px;
  }
 
+ .button_confirm {
+    font-size: 15px;
+    padding: 5px 20px;
+    margin: 20px;
+
+}
+
 /* ページ固有のスタイル */
 /* ログインページ */
 th.login_field {
@@ -88,10 +95,4 @@ td.add_task {
     color: red;
     margin: 10px;
     text-align: center;
-}
-
-.delete_confirm {
-    font-size: 15px;
-    padding: 5px 20px;
-    margin: 10px;
 }
