@@ -84,6 +84,11 @@ td.add_task {
     font-size: 20px;
 }
 
+.input_assignees {
+    width: 60%;
+    font-size: 20px;
+}
+
 .input_due {
     width: 40%;
     font-size: 20px;
