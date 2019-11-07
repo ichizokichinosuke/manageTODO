@@ -96,3 +96,10 @@ td.add_task {
     margin: 10px;
     text-align: center;
 }
+
+/* error.html */
+.error_text{
+    font-size: 20px;
+    margin: 10px;
+    text-align: center;
+}
