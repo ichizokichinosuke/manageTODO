@@ -9,13 +9,13 @@
         <h1>All tasks</h1>
         <hr>
         <div align="right">Welcome to here!</div>
-        <table border="0">
+        <table border="0" class="head_table">
             <form action="" method="GET">
                 <!-- trはTable Rowなので横 -->
                 <!-- thはTable Header -->
                 <!-- tdはTable Data -->
                 <tr>
-                    <td>
+                    <td class="submit_button">
                         <input type="submit" value="Register">
                     </td>
                     <th>Searching keyword</th>
@@ -28,24 +28,32 @@
                 </tr>
             </form>
         </table>
-        <table border="1">
+        <table border="0">
             <form action="" method="">
                 <tr>
-                    <th>Task</th>
-                    <th>Assignees</th>
-                    <th>Due</th>
-                    <th>Done</th>
-                    <th>Operation</th>
+                    <th class="table_header">Task</th>
+                    <th class="table_header">Assignees</th>
+                    <th class="table_header">Due</th>
+                    <th class="table_header">Done</th>
+                    <th class="table_header">Operation</th>
                 </tr>
                 <tr>
-                    <th>Eat</th>
-                    <th>Tanaka</th>
-                    <th>2019/12/01</th>
-                    <th>not</th>
+                    <th class="table_contents">Eat</th>
+                    <th class="table_contents">Tanaka</th>
+                    <th class="table_contents">2019/12/01</th>
+                    <th class="table_contents">not</th>
                     <td>
-                        <input type="submit" value="Done">
-                        <input type="submit" value="Update">
-                        <input type="submit" value="Delete">
+                        <table border="0">
+                            <td class="table_button">
+                                <input type="submit" value="Done">
+                            </td>
+                            <td class="table_button">
+                                <input type="submit" value="Update">
+                            </td>
+                            <td class="table_button">
+                                <input type="submit" value="Delete">    
+                            </td>
+                        </table>
                     </td>
                 </tr>
             </form>
