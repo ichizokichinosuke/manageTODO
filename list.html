@@ -9,7 +9,7 @@
         <h1>All tasks</h1>
         <hr>
         <div align="right">Welcome to here!</div>
-        <table border="0" class="head_table">
+        <table border="0" width="90%" class="head_table">
             <form action="" method="GET">
                 <!-- trはTable Rowなので横 -->
                 <!-- thはTable Header -->
@@ -18,42 +18,45 @@
                     <td class="submit_button">
                         <input type="submit" value="Register">
                     </td>
-                    <th>Searching keyword</th>
-                    <td>
-                        <input type="text">
-                    </td>
-                    <td>
-                        <input type="submit" value="Search">
-                    </td>
                 </tr>
-            </form>
+            <td align="right">
+                <table border="0">
+                    <tr>
+                        <th>Searching keyword</th>
+                        <form action="">
+                            <td>
+                                <input type="text">
+                            </td>
+                            <td>
+                                <input type="submit" value="Search">
+                            </td>
+                        </form>
+                    </tr>
+                </table>
+            </td>
         </table>
-        <table border="0">
+        <table border="0" width="90%">
             <form action="" method="">
                 <tr>
                     <th class="table_header">Task</th>
                     <th class="table_header">Assignees</th>
                     <th class="table_header">Due</th>
                     <th class="table_header">Done</th>
-                    <th class="table_header">Operation</th>
+                    <th class="table_header" colspan="3">Operation</th>
                 </tr>
                 <tr>
                     <th class="table_contents">Eat</th>
                     <th class="table_contents">Tanaka</th>
                     <th class="table_contents">2019/12/01</th>
                     <th class="table_contents">not</th>
-                    <td>
-                        <table border="0">
-                            <td class="table_button">
-                                <input type="submit" value="Done">
-                            </td>
-                            <td class="table_button">
-                                <input type="submit" value="Update">
-                            </td>
-                            <td class="table_button">
-                                <input type="submit" value="Delete">    
-                            </td>
-                        </table>
+                    <td class="table_button" align="center">
+                        <input type="submit" value="Done">
+                    </td>
+                    <td class="table_button" align="center">
+                        <input type="submit" value="Update">
+                    </td>
+                    <td class="table_button" align="center">
+                        <input type="submit" value="Delete">    
                     </td>
                 </tr>
             </form>
