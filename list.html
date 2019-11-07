@@ -15,15 +15,17 @@
                 <!-- thはTable Header -->
                 <!-- tdはTable Data -->
                 <tr>
-                    <td class="submit_button">
-                        <input type="submit" value="Register">
-                    </td>
+                    <form action="add.html">
+                        <td class="submit_button">
+                            <input type="submit" value="Register">
+                        </td>
+                    </form>
                 </tr>
             <td align="right">
                 <table border="0">
                     <tr>
                         <th>Searching keyword</th>
-                        <form action="">
+                        <form action="search.html">
                             <td>
                                 <input type="text">
                             </td>
@@ -49,15 +51,21 @@
                     <th class="table_contents">Tanaka</th>
                     <th class="table_contents">2019/12/01</th>
                     <th class="table_contents">not</th>
-                    <td class="table_button" align="center">
-                        <input type="submit" value="Done">
-                    </td>
-                    <td class="table_button" align="center">
-                        <input type="submit" value="Update">
-                    </td>
-                    <td class="table_button" align="center">
-                        <input type="submit" value="Delete">
-                    </td>
+                    <form action="">
+                        <td class="table_button" align="center">
+                            <input type="submit" value="Done">
+                        </td>
+                    </form>
+                    <form action="edit.html">
+                        <td class="table_button" align="center">
+                            <input type="submit" value="Update">
+                        </td>
+                    </form>
+                    <form action="delete.html">
+                        <td class="table_button" align="center">
+                            <input type="submit" value="Delete">
+                        </td>
+                    </form>
                 </tr>
             </form>
         </table>
