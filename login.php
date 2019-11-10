@@ -7,6 +7,8 @@ $db_pass = "manage_pass";
 
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 if($link !== false){
+    $msg = "";
+    $err_msg = "";
 
     if(isset($_POST["send"]) == true){
         $user_id = $_POST["user_id"];
@@ -22,8 +24,20 @@ if($link !== false){
                 . ")";
 
             $res = mysqli_query($link, $query);
+            if($res !== false){
+                $msg = "Success to login";
+
+            }
+            else{
+                $msg = "Failed to login";
+            }
+        }
+        else{
+            $err_msg = "Empty login id or password.";
         }
     }
+
+    
 }
 
 ?>
