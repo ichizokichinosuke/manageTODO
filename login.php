@@ -10,7 +10,7 @@ if($link !== false){
     $msg = "";
     $err_msg = "";
 
-    if(isset($_POST["send"]) == true){
+    if(isset($_POST["send"]) === true){
         $user_id = $_POST["user_id"];
         $password = $_POST["password"];
 
@@ -36,8 +36,6 @@ if($link !== false){
             $err_msg = "Empty login id or password.";
         }
     }
-
-    
 }
 
 ?>
@@ -54,7 +52,7 @@ if($link !== false){
         <hr>
         <div align="center">
             <table border="0">
-                <form action="list.html" method="get">
+                <form action="" method="post">
                     <tr>
                         <th class="login_field">UserId</th>
                         <td class="login_field">
@@ -74,6 +72,10 @@ if($link !== false){
                     </tr>
                 </form>
             </table>
+<?php
+    if($msg !== "") echo "<p>" . $msg . "</p>";
+    if($err_msg !== "") echo '<p style="color:#f00;">' . $err_msg . '</p>';
+?>
         </div>
     </body>
 </html>
