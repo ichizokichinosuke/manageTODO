@@ -20,7 +20,7 @@ if($link !== false){
                 . " password "
                 . ") VALUES ("
                 . " '" . mysqli_real_escape_string($link, $user_id) . "', "
-                . " '" . mysqli_real_escape_string($link, $password) . "', "
+                . " '" . mysqli_real_escape_string($link, $password) . "' "
                 . ")";
 
             $res = mysqli_query($link, $query);
@@ -52,7 +52,7 @@ if($link !== false){
         <hr>
         <div align="center">
             <table border="0">
-                <form action="" method="post">
+                <form action="list.php" method="post">
                     <tr>
                         <th class="login_field">UserId</th>
                         <td class="login_field">
