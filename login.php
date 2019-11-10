@@ -1,4 +1,32 @@
+<?php
 
+$db_host = "localhost";
+$db_name = "manage_db";
+$db_user = "manage_user";
+$db_pass = "manage_pass";
+
+$link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+if($link !== false){
+
+    if(isset($_POST["send"]) == true){
+        $user_id = $_POST["user_id"];
+        $password = $_POST["password"];
+
+        if($user_id !== "" && $password !== ""){
+            $query = " INSERT INTO todo_user("
+                . " id, "
+                . " password "
+                . ") VALUES ("
+                . " '" . mysqli_real_escape_string($link, $user_id) . "', "
+                . " '" . mysqli_real_escape_string($link, $password) . "', "
+                . ")";
+
+            $res = mysqli_query($link, $query);
+        }
+    }
+}
+
+?>
 
 <html>
     <head>
@@ -27,7 +55,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="login_button">
-                            <input type="submit" value="Login" id="login">
+                            <input type="submit" name="send" value="Login" id="login">
                         </td>
                     </tr>
                 </form>
