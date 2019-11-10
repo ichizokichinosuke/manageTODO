@@ -1,0 +1,110 @@
+/* 基本のスタイル */
+h1 {
+    font-size: 32px;
+    margin: 0px;
+    padding: 4px;
+    color: #222288;
+}
+
+hr {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.welcome {
+    font-size: 20px;
+    color: black;
+    margin: 10px;
+ }
+
+ .button_confirm {
+    font-size: 15px;
+    padding: 5px 20px;
+    margin: 20px;
+
+}
+
+/* ページ固有のスタイル */
+/* ログインページ */
+th.login_field {
+    width: 150px;
+    text-align: left;
+    padding: 8px;
+    color: #ffffff;
+    background-color: #aaaaff;
+}
+
+td.login_field {
+    padding: 8px;
+}
+
+td.login_button {
+    text-align: center;
+    padding: 8px;
+}
+/* list */
+/* td.submit_button {
+    padding: 0px 200px 0px 0px;
+} */
+
+th.table_header {
+    /* margin-top: 20px; */
+    padding: 15px;
+    background-color: #5c5cd4;
+    color: #ffffff;
+}
+
+th.table_contents {
+    padding: 15px;
+    background-color: skyblue;
+}
+
+td.table_button {
+    padding: 20px 18px;
+    background-color: skyblue;
+}
+
+/* add.html */
+th.add_task {
+    padding: 10px;
+    color: white;   
+    background-color: slateblue;
+    text-align: center;
+}
+
+td.add_task {
+    padding: 10px;
+    background-color: skyblue;
+    text-align: center;
+}
+
+.input_box {
+    width: 90%;
+    /* height: 90%; */
+    font-size: 20px;
+}
+
+.input_assignees {
+    width: 60%;
+    font-size: 20px;
+}
+
+.input_due {
+    width: 40%;
+    font-size: 20px;
+}
+
+/* edit.html */
+.delete_text {
+    font-size: 20px;
+    color: red;
+    margin: 10px;
+    text-align: center;
+}
+
+/* error.html */
+.error_text{
+    font-size: 20px;
+    margin: 10px;
+    text-align: center;
+}
