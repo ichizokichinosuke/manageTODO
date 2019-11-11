@@ -18,6 +18,9 @@ if($link !== false){
     }
     // arsort($data);
 }
+else{
+    echo "Failed to connect database.";
+}
 
 mysqli_close($link);
 ?>
@@ -35,42 +38,41 @@ mysqli_close($link);
         <hr>
         <div align="right" class="welcome">Welcome to here!</div>
         <table border="0" width="90%" class="head_table">
-            <form action="" method="GET">
-                <!-- trはTable Rowなので横 -->
-                <!-- thはTable Header -->
-                <!-- tdはTable Data -->
+            <!-- trはTable Rowなので横 -->
+            <!-- thはTable Header -->
+            <!-- tdはTable Data -->
+            <tr>
+                <form action="add.html">
+                    <td class="submit_button">
+                        <input type="submit" value="Register">
+                    </td>
+                </form>
+            </tr>
+        <td align="right">
+            <table border="0">
                 <tr>
-                    <form action="add.html">
-                        <td class="submit_button">
-                            <input type="submit" value="Register">
+                    <th>Searching keyword</th>
+                    <form action="search.html">
+                        <td>
+                            <input type="text">
+                        </td>
+                        <td>
+                            <input type="submit" value="Search">
                         </td>
                     </form>
                 </tr>
-            <td align="right">
-                <table border="0">
-                    <tr>
-                        <th>Searching keyword</th>
-                        <form action="search.html">
-                            <td>
-                                <input type="text">
-                            </td>
-                            <td>
-                                <input type="submit" value="Search">
-                            </td>
-                        </form>
-                    </tr>
-                </table>
-            </td>
-        </table>
-        <table border="0" width="90%">
-            <form action="" method="">
-                <tr>
-                    <th class="table_header">Task</th>
-                    <th class="table_header">Assignees</th>
-                    <th class="table_header">Due</th>
-                    <th class="table_header">Done</th>
-                    <th class="table_header" colspan="3">Operation</th>
-                </tr>
+            </table>
+        </td>
+    </table>
+    <table border="0" width="90%">
+        <form action="" method="">
+            <tr>
+                <th class="table_header">Task</th>
+                <th class="table_header">Assignees</th>
+                <th class="table_header">Due</th>
+                <th class="table_header">Done</th>
+                <th class="table_header" colspan="3">Operation</th>
+            </tr>
 <?php
     foreach($data as $val){
         echo "<tr>";
@@ -109,7 +111,6 @@ mysqli_close($link);
         </tr>';
     }
 ?>
-            </form>
         </table>
     </body>
 </html>
