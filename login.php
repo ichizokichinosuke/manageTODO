@@ -26,7 +26,6 @@ if($link !== false){
             $res = mysqli_query($link, $query);
             if($res !== false){
                 $msg = "Success to login";
-
             }
             else{
                 $msg = "Failed to login";
@@ -41,17 +40,18 @@ else{
     echo "Failed to connnect to database.";
 }
 
+mysqli_close($link);
 ?>
 
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <title>ログイン</title>
+        <title>Login</title>
         <link rel="stylesheet" href="todo.css">
         <script src="login.js" type="text/javascript"></script>
     </head>
     <body onload="fieldChanged();">
-        <h1>login</h1>
+        <h1>Login</h1>
         <hr>
         <div align="center">
             <table border="0">
@@ -70,7 +70,9 @@ else{
                     </tr>
                     <tr>
                         <td colspan="2" class="login_button">
-                            <input type="submit" name="send" value="Login" id="login">
+                            <!-- <form action="list.php"> -->
+                                <input type="submit" name="send" value="Login" id="login">
+                            <!-- </form> -->
                         </td>
                     </tr>
                 </form>

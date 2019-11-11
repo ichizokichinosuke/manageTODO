@@ -6,7 +6,38 @@ $db_user = "manage_user";
 $db_pass = "manage_pass";
 
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+
 if($link !== false){
+    $msg = "";
+    $err_msg = "";
+
+    // Login phase
+
+    $user_id = $_POST["user_id"];
+    $password = $_POST["password"];
+
+    if($user_id !== "" && $password !== ""){
+        $query = " INSERT INTO todo_user("
+            . " id, "
+            . " password "
+            . ") VALUES ("
+            . " '" . mysqli_real_escape_string($link, $user_id) . "', "
+            . " '" . mysqli_real_escape_string($link, $password) . "' "
+            . ")";
+
+        $res = mysqli_query($link, $query);
+        if($res !== false){
+            $msg = "Success to login";
+        }
+        else{
+            $msg = "Failed to login";
+        }
+    }
+    else{
+        $err_msg = "Empty login id or password.";
+    }
+
+    // Get data from todo_item
     $msg = "";
     $err_msg = "";
 
@@ -19,7 +50,7 @@ if($link !== false){
     // arsort($data);
 }
 else{
-    echo "Failed to connect database.";
+    echo "Failed to connnect to database.";
 }
 
 mysqli_close($link);
