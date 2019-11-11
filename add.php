@@ -65,7 +65,7 @@ mysqli_close($link);
                 <tr>
                     <th class="add_task">Assignees</th>
                     <td class="add_task" colspan="1">
-                        <select name="assignees" id="" class="input_assignees" name="user_id">
+                        <select id="" class="input_assignees" name="user_id_add">
                             <option value="user_01">user_01</option>
                             <option value="user_02">user_02</option>
                             <option value="user_03">user_03</option>

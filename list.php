@@ -12,31 +12,32 @@ if($link !== false){
     $err_msg = "";
 
     // Login phase
+    if(isset($_POST["send"]) !== false){
 
-    $user_id = $_POST["user_id"];
-    $password = $_POST["password"];
+        $user_id = $_POST["user_id"];
+        $password = $_POST["password"];
 
-    if($user_id !== "" && $password !== ""){
-        $query = " INSERT INTO todo_user("
-            . " id, "
-            . " password "
-            . ") VALUES ("
-            . " '" . mysqli_real_escape_string($link, $user_id) . "', "
-            . " '" . mysqli_real_escape_string($link, $password) . "' "
-            . ")";
+        if($user_id !== "" && $password !== ""){
+            $query = " INSERT INTO todo_user("
+                . " id, "
+                . " password "
+                . ") VALUES ("
+                . " '" . mysqli_real_escape_string($link, $user_id) . "', "
+                . " '" . mysqli_real_escape_string($link, $password) . "' "
+                . ")";
 
-        $res = mysqli_query($link, $query);
-        if($res !== false){
-            $msg = "Success to login";
+            $res = mysqli_query($link, $query);
+            if($res !== false){
+                $msg = "Success to login";
+            }
+            else{
+                $msg = "Failed to login";
+            }
         }
         else{
-            $msg = "Failed to login";
+            $err_msg = "Empty login id or password.";
         }
     }
-    else{
-        $err_msg = "Empty login id or password.";
-    }
-
     // Get data from todo_item
     $msg = "";
     $err_msg = "";
@@ -46,8 +47,38 @@ if($link !== false){
     $data = array();
     while($row = mysqli_fetch_assoc($res)){
         array_push($data, $row);
+        echo $row;
     }
     // arsort($data);
+
+    // Regist data from add.php
+    if(isset($_POST["add_send"]) !== false){
+        $task_name = $_POST["task_name"];
+        $user_id = $_POST["user_id_add"];
+        $due = $_POST["due"];
+
+        if($task_name !== "" && $user_id !== "" && $due !== ""){
+            $query = " INSERT INTO todo_item ("
+                . " NAME, "
+                . " USER, "
+                . "EXPIRE_DATE "
+                . ") VALUES ("
+                . " '" . mysqli_real_escape_string($link, $task_name) . "', "
+                . " '" . mysqli_real_escape_string($link, $user_id) . "', "
+                . " '" . mysqli_real_escape_string($link, $due) . "' "
+                . ")"; 
+            $res = mysqli_query($link, $query);
+            if($res !== false){
+                $msg = "Success to add task.";
+            }
+            else{
+                $err_msg = "Failed to add task.";
+            }
+        }
+        else{
+            $err_msg = "Empty in input box.";
+        }
+    }
 }
 else{
     echo "Failed to connnect to database.";
@@ -67,6 +98,10 @@ mysqli_close($link);
     <body>
         <h1>All tasks</h1>
         <hr>
+<?php
+    if($msg !== "") echo "<p>" . $msg . "</p>";
+    if($err_msg !== "") echo '<p style="color:#f00;">' . $err_msg . '</p>';
+?>
         <div align="right" class="welcome">Welcome to here!</div>
         <table border="0" width="90%" class="head_table">
             <!-- trはTable Rowなので横 -->
