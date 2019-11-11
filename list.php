@@ -8,9 +8,6 @@ $db_pass = "manage_pass";
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
 if($link !== false){
-    $msg = "";
-    $err_msg = "";
-
     // Login phase
     if(isset($_POST["send"]) !== false){
 
@@ -38,18 +35,6 @@ if($link !== false){
             $err_msg = "Empty login id or password.";
         }
     }
-    // Get data from todo_item
-    $msg = "";
-    $err_msg = "";
-
-    $query = "SELECT * from todo_item where not ID";
-    $res = mysqli_query($link, $query);
-    $data = array();
-    while($row = mysqli_fetch_assoc($res)){
-        array_push($data, $row);
-        echo $row;
-    }
-    // arsort($data);
 
     // Regist data from add.php
     if(isset($_POST["add_send"]) !== false){
@@ -78,7 +63,25 @@ if($link !== false){
         else{
             $err_msg = "Empty in input box.";
         }
+        // $task_name = "";
+        // $user_id = "";
+        // $due = "";
     }
+
+    // Get data from todo_item
+    $msg = "";
+    $err_msg = "";
+
+    $query = "SELECT * from todo_item";
+    $res = mysqli_query($link, $query);
+    $data = array();
+    while($row = mysqli_fetch_assoc($res)){
+        array_push($data, $row);
+    }
+    arsort($data);
+    $msg = "";
+    $err_msg = "";
+    
 }
 else{
     echo "Failed to connnect to database.";
