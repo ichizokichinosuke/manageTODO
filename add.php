@@ -54,7 +54,7 @@ mysqli_close($link);
         <h1>Add task</h1>
         <hr>
         <div align="right" class="welcome">Welcome to here!</div>
-        <form action="list.html" method="post">
+        <form action="list.php" method="post">
             <table border="0" width="90%">
                 <tr>
                     <th class="add_task">Task</th>

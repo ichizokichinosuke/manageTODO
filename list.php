@@ -42,7 +42,7 @@ mysqli_close($link);
             <!-- thはTable Header -->
             <!-- tdはTable Data -->
             <tr>
-                <form action="add.html">
+                <form action="add.php">
                     <td class="submit_button">
                         <input type="submit" value="Register">
                     </td>

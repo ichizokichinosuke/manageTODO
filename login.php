@@ -37,6 +37,9 @@ if($link !== false){
         }
     }
 }
+else{
+    echo "Failed to connnect to database.";
+}
 
 ?>
 
