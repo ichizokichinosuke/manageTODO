@@ -52,7 +52,7 @@ if($link !== false){
         <hr>
         <div align="center">
             <table border="0">
-                <form action="list.php" method="post">
+                <form action="list.html" method="post">
                     <tr>
                         <th class="login_field">UserId</th>
                         <td class="login_field">
