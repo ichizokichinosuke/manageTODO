@@ -10,19 +10,19 @@ if($link !== false){
     $msg = "";
     $err_msg = "";
 
-    if(isset($_GET["done_send"]) === true){
-
+    $query = "SELECT * from todo_item where not ID";
+    $res = mysqli_query($link, $query);
+    $data = array();
+    while($row = mysqli_fetch_assoc($res)){
+        array_push($data, $row);
     }
-    elseif(isset($_GET["edit_send"]) === true){
-
-    }
-    elseif(isset($_GET["delete_send"]) === true){
-        
-    }
+    // arsort($data);
 }
 
-
+mysqli_close($link);
 ?>
+
+
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -71,27 +71,44 @@ if($link !== false){
                     <th class="table_header">Done</th>
                     <th class="table_header" colspan="3">Operation</th>
                 </tr>
-                <tr>
-                    <th class="table_contents">Eat</th>
-                    <th class="table_contents">Tanaka</th>
-                    <th class="table_contents">2019/12/01</th>
-                    <th class="table_contents">not</th>
-                    <form action="list.html", method="get">
-                        <td class="table_button" align="center">
-                            <input type="submit" value="Done" name="done_send">
-                        </td>
-                    </form>
-                    <form action="edit.html", method="get">
-                        <td class="table_button" align="center">
-                            <input type="submit" value="Edit" name="edit_send">
-                        </td>
-                    </form>
-                    <form action="delete.html", method="get">
-                        <td class="table_button" align="center">
-                            <input type="submit" value="Delete" name="delete_send">
-                        </td>
-                    </form>
-                </tr>
+<?php
+    foreach($data as $val){
+        echo "<tr>";
+        echo "<th class='table_contents'>";
+        echo $val["NAME"];
+        echo "</th>";
+
+        echo "<th class='table_contents'>";
+        echo $val["USER"];
+        echo "</th>";
+        
+        echo "<th class='table_contents'>";
+        echo $val["EXPIRE_DATE"];
+        echo "</th>";
+
+        echo "<th class='table_contents'>";
+        echo $val["FINISHED_DATE"];
+        echo "</th>";
+
+        echo '
+            <form action="list.html", method="get">
+                <td class="table_button" align="center">
+                    <input type="submit" value="Done" name="done_send">
+                </td>
+            </form>
+            <form action="edit.html", method="get">
+                <td class="table_button" align="center">
+                    <input type="submit" value="Edit" name="edit_send">
+                </td>
+            </form>
+            <form action="delete.html", method="get">
+                <td class="table_button" align="center">
+                    <input type="submit" value="Delete" name="delete_send">
+                </td>
+            </form>
+        </tr>';
+    }
+?>
             </form>
         </table>
     </body>
