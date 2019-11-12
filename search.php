@@ -1,21 +1,33 @@
 <?php
 
-$msg = "";
-$err_msg = "";
+$db_host = "localhost";
+$db_name = "manage_db";
+$db_user = "manage_user";
+$db_pass = "manage_pass";
 
-if(isset($_GET["send_search"]) !== false){
-    $search_task = $_GET["search_task"];
-    $query = "SELECT * from todo_item";
-    $res = mysqli_query($link, $query);
-    $data = array();
-    while($row = mysqli_fetch_assoc($res)){
-        if($search_task === $row["NAME"]){
-            array_push($data, $row);
+$link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+if($link !== false){
+    $msg = "";
+    $err_msg = "";
+
+    if(isset($_GET["send_search"]) !== false){
+        $search_task = $_GET["search_task"];
+        $query = "SELECT * from todo_item";
+        $res = mysqli_query($link, $query);
+        $data = array();
+        while($row = mysqli_fetch_assoc($res)){
+            if($search_task === $row["NAME"]){
+                array_push($data, $row);
+            }
+            arsort($data);
         }
-        arsort($data);
     }
-
 }
+else{
+    echo "Failed to connect to database.";
+}
+
+mysqli_close($link);
 
 ?>
 
