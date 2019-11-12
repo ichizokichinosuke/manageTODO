@@ -68,6 +68,22 @@ if($link !== false){
         // $due = "";
     }
 
+    // Done process
+    if(isset($_POST["done_send"]) !== false){
+        $query = " INSERT INTO todo_item ("
+            . " FINISHED_DATE "
+            . ") VALUES ("
+            . " '" . mysqli_real_escape_string($link, SYSDATETIME()) . "' "
+            . ")";
+        $res = mysqli_query($link, $query);
+        if($res !== false){
+            $msg = "Done task.";
+        }
+        else{
+            $err_msg = "Failed to finish task.";
+        }
+    }
+
     // Get data from todo_item
     $msg = "";
     $err_msg = "";
@@ -160,7 +176,7 @@ mysqli_close($link);
         echo "</th>";
 
         echo '
-            <form action="list.html", method="get">
+            <form action="list.php", method="POST">
                 <td class="table_button" align="center">
                     <input type="submit" value="Done" name="done_send">
                 </td>
