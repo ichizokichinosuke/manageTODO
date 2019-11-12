@@ -81,7 +81,7 @@ if($link !== false){
     arsort($data);
     $msg = "";
     $err_msg = "";
-    
+
 }
 else{
     echo "Failed to connnect to database.";
@@ -121,12 +121,12 @@ mysqli_close($link);
             <table border="0">
                 <tr>
                     <th>Searching keyword</th>
-                    <form action="search.html">
+                    <form action="search.php" method="get">
                         <td>
-                            <input type="text">
+                            <input type="text" name="search_task">
                         </td>
                         <td>
-                            <input type="submit" value="Search">
+                            <input type="submit" value="Search" name="send_search">
                         </td>
                     </form>
                 </tr>
