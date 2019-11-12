@@ -70,11 +70,10 @@ if($link !== false){
 
     // Done process
     if(isset($_POST["done_send"]) !== false){
-        $query = " INSERT INTO todo_item ("
-            . " FINISHED_DATE "
-            . ") VALUES ("
-            . " '" . mysqli_real_escape_string($link, SYSDATETIME()) . "' "
-            . ")";
+        echo $val["NAME"];
+        $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
+        . " '" . $val['id'] . "' "
+        . ")";
         $res = mysqli_query($link, $query);
         if($res !== false){
             $msg = "Done task.";
