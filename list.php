@@ -79,8 +79,6 @@ if($link !== false){
         array_push($data, $row);
     }
     arsort($data);
-    $msg = "";
-    $err_msg = "";
 
 }
 else{
@@ -117,21 +115,21 @@ mysqli_close($link);
                     </td>
                 </form>
             </tr>
-        <td align="right">
-            <table border="0">
-                <tr>
-                    <th>Searching keyword</th>
-                    <form action="search.php" method="get">
-                        <td>
-                            <input type="text" name="search_task">
-                        </td>
-                        <td>
-                            <input type="submit" value="Search" name="send_search">
-                        </td>
-                    </form>
-                </tr>
-            </table>
-        </td>
+            <td align="right">
+                <table border="0">
+                    <tr>
+                        <th>Searching keyword</th>
+                        <form action="search.php" method="get">
+                            <td>
+                                <input type="text" name="search_task">
+                            </td>
+                            <td>
+                                <input type="submit" value="Search" name="send_search">
+                            </td>
+                        </form>
+                    </tr>
+                </table>
+            </td>
     </table>
     <table border="0" width="90%">
         <form action="" method="">
