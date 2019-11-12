@@ -15,11 +15,23 @@ if($link !== false){
         $query = "SELECT * from todo_item";
         $res = mysqli_query($link, $query);
         $data = array();
-        while($row = mysqli_fetch_assoc($res)){
-            if($search_task === $row["NAME"]){
-                array_push($data, $row);
+        // 0でもEmptyと判定するため
+        if(empty($search_task) !== true || $search_task === '0'){
+            while($row = mysqli_fetch_assoc($res)){
+                if(strpos($row["NAME"], $search_task) !== false){
+                    array_push($data, $row);
+                }
+                // if($search_task === $row["NAME"]){
+                //     array_push($data, $row);
+                // }
+                arsort($data);
             }
-            arsort($data);
+        }
+        else{
+            $msg = "Nothing results.";
+        }
+        if(empty($data) === true){
+            $msg = "Nothing results.";
         }
     }
 }
@@ -42,12 +54,38 @@ mysqli_close($link);
     <body>
         <h1>Search results</h1>
         <hr>
+
         <div align="right" class="welcome">Welcome to here!</div>
+<?php
+    if($msg !== "") echo "<p>" . $msg . "</p>";
+    if($err_msg !== "") echo '<p style="color:#f00;">' . $err_msg . '</p>';
+?>
         <form action="list.php">
             <div class="button_confirm">
                 <input type="submit" value="Back">
             </div>
         </form>
+
+        <table border="0" width="90%" class="head_table">
+            <!-- trはTable Rowなので横 -->
+            <!-- thはTable Header -->
+            <!-- tdはTable Data -->
+            <td align="right">
+                <table border="0">
+                    <tr>
+                        <th>Searching keyword</th>
+                        <form action="search.php" method="get">
+                            <td>
+                                <input type="text" name="search_task">
+                            </td>
+                            <td>
+                                <input type="submit" value="Search" name="send_search">
+                            </td>
+                        </form>
+                    </tr>
+                </table>
+            </td>
+        </table>
         <table border="0" width="90%">
             <tr>
                 <th class="table_header">Task</th>
