@@ -112,7 +112,8 @@ mysqli_close($link);
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>All tasks</title>
         <link rel="stylesheet" href="todo.css">
-        <script src=""></script>
+        <script src="js/jquery-3.4.1.min.js"></script>
+        <script type="text/javascript" src="js/sample.js"></script>
     </head>
     <body>
         <h1>All tasks</h1>
@@ -184,7 +185,7 @@ mysqli_close($link);
         echo '
             <form action="list.php", method="POST">
                 <td class="table_button" align="center">
-                    <input type="submit" value="Done" name=$done_btn>
+                    <input type="submit" value="Done" name="done_send[]">
                 </td>
             </form>
             <form action="edit.html", method="get">
@@ -198,14 +199,16 @@ mysqli_close($link);
                 </td>
             </form>
         </tr>';
+        var_dump($_POST);
         // echo $val["NAME"];
         // Done process
+
         if(isset($_POST[$done_btn]) !== false){
             foreach($_POST as $name => $value){
                 echo $$name;
             }
             $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
-            . " '" . $val['id'] . "' "
+            . " '" . $val['ID'] . "' "
             . ")";
             $res = mysqli_query($link, $query);
             if($res !== false){
