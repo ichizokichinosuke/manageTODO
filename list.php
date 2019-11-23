@@ -130,7 +130,7 @@ mysqli_close($link);
             <tr>
                 <form action="add.php">
                     <td class="submit_button">
-                        <input type="submit" value="Register">
+                        <input type='submit' value="Register">
                     </td>
                 </form>
             </tr>
@@ -143,7 +143,7 @@ mysqli_close($link);
                                 <input type="text" name="search_task">
                             </td>
                             <td>
-                                <input type="submit" value="Search" name="send_search">
+                                <input type='submit' value="Search" name="send_search">
                             </td>
                         </form>
                     </tr>
@@ -182,31 +182,31 @@ mysqli_close($link);
         $edit_btn = "edit_send_".$val["ID"];
         $delete_btn = "delete_send_".$val["ID"];
 
-        echo '
-            <form action="list.php", method="POST">
-                <td class="table_button" align="center">
-                    <input type="submit" value="Done" name="done_send[]">
+        echo "
+            <form action='list.php', method='POST'>
+                <td class='table_button' align='center'>
+                    <input type='submit' value='Done' name=$done_btn>
                 </td>
             </form>
-            <form action="edit.html", method="get">
-                <td class="table_button" align="center">
-                    <input type="submit" value="Edit" name="edit_send">
+            <form action='edit.html', method='get'>
+                <td class='table_button' align='center'>
+                    <input type='submit' value='Edit' name=$edit_btn>
                 </td>
             </form>
-            <form action="delete.html", method="get">
-                <td class="table_button" align="center">
-                    <input type="submit" value="Delete" name="delete_send">
+            <form action='delete.html', method='get'>
+                <td class='table_button' align='center'>
+                    <input type='submit' value='Delete' name=$delete_btn>
                 </td>
             </form>
-        </tr>';
+        </tr>";
         var_dump($_POST);
         // echo $val["NAME"];
         // Done process
 
         if(isset($_POST[$done_btn]) !== false){
-            foreach($_POST as $name => $value){
-                echo $$name;
-            }
+            // foreach($_POST as $name => $value){
+            //     echo $$name;
+            // }
             $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
             . " '" . $val['ID'] . "' "
             . ")";
