@@ -149,9 +149,8 @@ mysqli_close($link);
                     </tr>
                 </table>
             </td>
-    </table>
-    <table border="0" width="90%">
-        <form action="" method="">
+        </table>
+        <table border="0" width="90%">
             <tr>
                 <th class="table_header">Task</th>
                 <th class="table_header">Assignees</th>
@@ -181,6 +180,7 @@ mysqli_close($link);
         $done_btn = "done_send_".$val["ID"];
         $edit_btn = "edit_send_".$val["ID"];
         $delete_btn = "delete_send_".$val["ID"];
+        // echo $done_btn;
 
         echo "
             <form action='list.php', method='POST'>
@@ -188,12 +188,12 @@ mysqli_close($link);
                     <input type='submit' value='Done' name=$done_btn>
                 </td>
             </form>
-            <form action='edit.html', method='get'>
+            <form action='', method='POST'>
                 <td class='table_button' align='center'>
                     <input type='submit' value='Edit' name=$edit_btn>
                 </td>
             </form>
-            <form action='delete.html', method='get'>
+            <form action='', method='POST'>
                 <td class='table_button' align='center'>
                     <input type='submit' value='Delete' name=$delete_btn>
                 </td>
@@ -211,7 +211,7 @@ mysqli_close($link);
             if($link !== false){
                 $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
                 . " '" . $val['ID'] . "' ";
-                echo $query;
+                // echo $query;
                 $res = mysqli_query($link, $query);
                 if($res !== false){
                     $msg = "Done task.";
@@ -231,7 +231,8 @@ mysqli_close($link);
             // echo $done_btn;
         }
     }
-    var_dump($_POST);
+    // var_dump($_POST);
+    // echo $data[0];
 ?>
         </table>
     </body>
