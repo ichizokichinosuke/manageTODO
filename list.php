@@ -67,24 +67,36 @@ if($link !== false){
         // $user_id = "";
         // $due = "";
     }
-    // foreach($data as $val){
-    //     $done_btn = "done_send_".$val["ID"];
-    //     if(isset($_POST[$done_btn]) !== false){
-    //         echo $val["NAME"];
-    //         $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
-    //         . " '" . $val['id'] . "' "
-    //         . ")";
-    //         $res = mysqli_query($link, $query);
-    //         if($res !== false){
-    //             $msg = "Done task.";
-    //         }
-    //         else{
-    //             $err_msg = "Failed to finish task.";
-    //         }
-    //         echo $msg;
-    //         echo $err_msg;
-    //     }
-    // }
+
+    // Done Task
+    // done_btnであったらその末尾の数字部分を見て更新させればできそう
+    if(isset($_POST[$done_btn]) !== false){
+        // foreach($_POST as $name => $value){
+        //     echo $$name;
+        // }
+        $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+        if($link !== false){
+            $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
+            . " '" . $val['ID'] . "' ";
+            // echo $query;
+            $res = mysqli_query($link, $query);
+            if($res !== false){
+                $msg = "Done task.";
+            }
+            else{
+                $err_msg = "Failed to finish task.";
+            }
+            echo $msg;
+            echo $err_msg;
+        }
+        else{
+            echo "Failed to connnect to database.";
+        }
+        mysqli_close($link);
+    }
+    else{
+        // echo $done_btn;
+    }
 
     // Get data from todo_item
     $msg = "";
@@ -180,6 +192,7 @@ mysqli_close($link);
         $done_btn = "done_send_".$val["ID"];
         $edit_btn = "edit_send_".$val["ID"];
         $delete_btn = "delete_send_".$val["ID"];
+
         // echo $done_btn;
 
         echo "
@@ -202,36 +215,8 @@ mysqli_close($link);
         
         // echo $val["NAME"];
         // Done process
-
-        if(isset($_POST[$done_btn]) !== false){
-            // foreach($_POST as $name => $value){
-            //     echo $$name;
-            // }
-            $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-            if($link !== false){
-                $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
-                . " '" . $val['ID'] . "' ";
-                // echo $query;
-                $res = mysqli_query($link, $query);
-                if($res !== false){
-                    $msg = "Done task.";
-                }
-                else{
-                    $err_msg = "Failed to finish task.";
-                }
-                echo $msg;
-                echo $err_msg;
-            }
-            else{
-                echo "Failed to connnect to database.";
-            }
-            mysqli_close($link);
-        }
-        else{
-            // echo $done_btn;
-        }
     }
-    // var_dump($_POST);
+    var_dump($_POST);
     // echo $data[0];
 ?>
         </table>
