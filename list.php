@@ -230,7 +230,7 @@ mysqli_close($link);
                     <input type='submit' value='Edit' name=$edit_btn>
                 </td>
             </form>
-            <form action='', method='POST'>
+            <form action='delete.html', method='POST'>
                 <td class='table_button' align='center'>
                     <input type='submit' value='Delete' name=$delete_btn>
                 </td>
