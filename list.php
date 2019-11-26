@@ -90,7 +90,7 @@ if($link !== false){
         // Edit Task
         else if(substr($key, 0, 9) === "edit_task"){
             // echo $key;
-            $val = substr($key, 10, 2);
+            $val = substr($key, -2, 2);
             $e_task = mysqli_real_escape_string($link, $_POST['e_task']);
             $e_assignees = mysqli_real_escape_string($link, $_POST['e_assignees']);
             $e_due = mysqli_real_escape_string($link, $_POST["e_due"]);
@@ -120,6 +120,21 @@ if($link !== false){
         }
         else if($key === "cancel_edit"){
             
+        }
+
+        else if(substr($key, 0, 5) === "d_yes"){
+            $val = substr($key, -2, 2);
+            $query = " DELETE from todo_item where id = "
+            . "'" . $val . "'";
+            $res = mysqli_query($link, $query);
+            if($res !== false){
+                $msg = "Delete task.";
+            }
+            else{
+                $err_msg = "Failed to delete.";
+            }
+            echo $msg;
+            echo $err_msg;
         }
     }
     // Get data from todo_item
@@ -230,7 +245,7 @@ mysqli_close($link);
                     <input type='submit' value='Edit' name=$edit_btn>
                 </td>
             </form>
-            <form action='delete.html', method='POST'>
+            <form action='delete.php', method='POST'>
                 <td class='table_button' align='center'>
                     <input type='submit' value='Delete' name=$delete_btn>
                 </td>

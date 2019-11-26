@@ -12,8 +12,7 @@ if($link !== false){
     $err_msg = "";
 
     if(isset($_POST) !== false){
-        $key = array_keys($_POST)[0];
-        $val = substr(array_keys($_POST)[0], 10, 2);
+        $val = substr(array_keys($_POST)[0], -2, 2);
     }
     else{
         $err_msg = "Did not exsits task data.";
