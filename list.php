@@ -70,7 +70,8 @@ if($link !== false){
     // Done Task
     if(isset($_POST) !== false){
         $key = array_keys($_POST)[0];
-        echo $key;
+        // echo $key;
+        // var_dump($_POST);
         if(substr($key, 0, 9) === "done_send"){
             $val = substr($key, 10, 2);
             $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
@@ -85,21 +86,16 @@ if($link !== false){
             echo $msg;
             echo $err_msg;
         }
-        if(substr($key, 0, 9) === "edit_task"){
 
+        // Edit Task
+        else if(substr($key, 0, 9) === "edit_task"){
+            $val = substr($key, 10, 2);
+            // $query
+        }
+        else if($key === "cancel_edit"){
+            
         }
     }
-
-    // Edit Task
-    else if(substr($key, 0, 9) === "edit_task"){
-        $val = substr($key, 10, 2);
-        echo $val;
-
-    }
-    else if($key === "cancel_edit"){
-        
-    }
-
     // Get data from todo_item
     $msg = "";
     $err_msg = "";
