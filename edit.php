@@ -20,7 +20,7 @@ if($link !== false){
     }
 }
 else{
-    echo "Failed to connect database."
+    echo "Failed to connect database.";
 }
 
 ?>
@@ -42,13 +42,13 @@ else{
             <tr>
                 <th class="add_task">Task</th>
                 <td class="add_task" colspan="1">
-                    <input type="text" class="input_box">
+                    <input type="text" class="input_box" name="e_task">
                 </td>
             </tr>
             <tr>
                 <th class="add_task">Assignees</th>
                 <td class="add_task" colspan="1">
-                    <select name="assignees" id="" class="input_assignees">
+                    <select name="e_assignees" id="" class="input_assignees">
                             <option value="user_01">user_01</option>
                             <option value="user_02">user_02</option>
                             <option value="user_03">user_03</option>
@@ -58,24 +58,24 @@ else{
             <tr>
                 <th class="add_task">Due</th>
                 <td class="add_task">
-                    <input type="date" class="input_due">
+                    <input type="date" class="input_due" name="e_due">
                 </td>
             </tr>
             <tr>
                 <th class="add_task">Done</th>
                 <td class="add_task">
                     Yes
-                    <input type="checkbox">
+                    <input type="checkbox" name="e_done">
                     No
-                    <input type="checkbox">
+                    <input type="checkbox" name="e_yet">
                 </td>
             </tr>
         </table>
 
         <div align="center">
             <form action="list.php", method="POST">
-                <input type="submit" value="Update" class="button_confirm" name="edit_task">
-                <input type="submit" value="Cancel" class="button_confirm" name="cancel_edit">
+                <input type="submit" value="Update" class="button_confirm" name="e_edit">
+                <input type="submit" value="Cancel" class="button_confirm" name="e_cancel">
             </form>
         </div>
     </body>
