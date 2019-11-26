@@ -8,6 +8,8 @@ $db_pass = "manage_pass";
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
 if($link !== false){
+    $msg = "";
+    $err_msg = "";
     // Login phase
     if(isset($_POST["send"]) !== false){
 
@@ -70,30 +72,30 @@ if($link !== false){
 
     // Done Task
     // done_btnであったらその末尾の数字部分を見て更新させればできそう
-    if(isset($_POST[$done_btn]) !== false){
+    echo substr(array_keys($_POST)[0], 0, 9);
+    if(substr(array_keys($_POST)[0], 0, 9) === "done_send"){
+        $val = substr(array_keys($_POST)[0], 10, 2);
+        // echo $done_btn;
         // foreach($_POST as $name => $value){
         //     echo $$name;
         // }
-        $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-        if($link !== false){
-            $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
-            . " '" . $val['ID'] . "' ";
-            // echo $query;
-            $res = mysqli_query($link, $query);
-            if($res !== false){
-                $msg = "Done task.";
-            }
-            else{
-                $err_msg = "Failed to finish task.";
-            }
-            echo $msg;
-            echo $err_msg;
+        // $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+        $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
+        . " '" . $val . "' ";
+        echo $query;
+        $res = mysqli_query($link, $query);
+        if($res !== false){
+            $msg = "Done task.";
         }
         else{
-            echo "Failed to connnect to database.";
+            $err_msg = "Failed to finish task.";
         }
-        mysqli_close($link);
+        echo $msg;
+        echo $err_msg;
+        
+        // mysqli_close($link);
     }
+
     else{
         // echo $done_btn;
     }
