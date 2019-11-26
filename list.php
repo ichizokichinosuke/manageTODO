@@ -91,17 +91,21 @@ if($link !== false){
         else if(substr($key, 0, 9) === "edit_task"){
             // echo $key;
             $val = substr($key, 10, 2);
-            $e_task = $_POST['e_task'];
-            $e_assignees = $_POST['e_assignees'];
-            $e_due = $_POST["e_due"];
+            $e_task = mysqli_real_escape_string($link, $_POST['e_task']);
+            $e_assignees = mysqli_real_escape_string($link, $_POST['e_assignees']);
+            $e_due = mysqli_real_escape_string($link, $_POST["e_due"]);
             if(isset($_POST["e_done"]) !== false){
-                $e_done = $_POST["e_done"];
+                $e_done = mysqli_real_escape_string($link, $_POST["e_done"]);
             }
             else{
-                $e_done = "NULL";
+                $e_done = mysqli_real_escape_string($link, "null");
             }
             // IDの行をPOSTされている各値にアップデート
-            $query = " UPDATE todo_item set name=$e_task, USER=$e_assignees, EXPIRE_DATE=$e_due, FINISHED_DATE=$e_done where id=$val";
+            $query = " UPDATE todo_item set name= "
+            . "' " . $e_task . "', "
+            . "USER=". "'" . $e_assignees. "', "
+            . "EXPIRE_DATE=$e_due, " 
+            . "FINISHED_DATE=$e_done where id=$val";
             echo $query;
 
             $res = mysqli_query($link, $query);
