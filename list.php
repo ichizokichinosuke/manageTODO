@@ -68,22 +68,29 @@ if($link !== false){
     }
 
     // Done Task
-    $key = array_keys($_POST)[0];
-    if(substr($key, 0, 9) === "done_send"){
-        $val = substr($key, 10, 2);
-        $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
-        . " '" . $val . "' ";
-        $res = mysqli_query($link, $query);
-        if($res !== false){
-            $msg = "Done task.";
+    if(isset($_POST) !== false){
+        $key = array_keys($_POST)[0];
+        echo $key;
+        if(substr($key, 0, 9) === "done_send"){
+            $val = substr($key, 10, 2);
+            $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
+            . " '" . $val . "' ";
+            $res = mysqli_query($link, $query);
+            if($res !== false){
+                $msg = "Done task.";
+            }
+            else{
+                $err_msg = "Failed to finish task.";
+            }
+            echo $msg;
+            echo $err_msg;
         }
-        else{
-            $err_msg = "Failed to finish task.";
+        if(substr($key, 0, 9) === "edit_task"){
+
         }
-        echo $msg;
-        echo $err_msg;
     }
 
+    // Edit Task
     // else if{
     //     if
     // }
@@ -191,7 +198,7 @@ mysqli_close($link);
                     <input type='submit' value='Done' name=$done_btn>
                 </td>
             </form>
-            <form action='', method='POST'>
+            <form action='edit.php', method='POST'>
                 <td class='table_button' align='center'>
                     <input type='submit' value='Edit' name=$edit_btn>
                 </td>

@@ -1,3 +1,32 @@
+<?php
+
+$db_host = "localhost";
+$db_name = "manage_db";
+$db_user = "manage_user";
+$db_pass = "manage_pass";
+
+$link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+
+if($link !== false){
+    $msg = "";
+    $err_msg = "";
+
+    if(isset($_POST) !== false){
+        $key = array_keys($_POST)[0];
+        $val = substr($key, 9, 2);
+    }
+    else{
+        $err_msg = "Did not exsits task data.";
+    }
+}
+else{
+    echo "Failed to connect database."
+}
+
+?>
+
+
+
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
