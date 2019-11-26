@@ -65,24 +65,14 @@ if($link !== false){
         else{
             $err_msg = "Empty in input box.";
         }
-        // $task_name = "";
-        // $user_id = "";
-        // $due = "";
     }
 
     // Done Task
-    // done_btnであったらその末尾の数字部分を見て更新させればできそう
-    echo substr(array_keys($_POST)[0], 0, 9);
-    if(substr(array_keys($_POST)[0], 0, 9) === "done_send"){
-        $val = substr(array_keys($_POST)[0], 10, 2);
-        // echo $done_btn;
-        // foreach($_POST as $name => $value){
-        //     echo $$name;
-        // }
-        // $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+    $key = array_keys($_POST)[0];
+    if(substr($key, 0, 9) === "done_send"){
+        $val = substr($key, 10, 2);
         $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
         . " '" . $val . "' ";
-        echo $query;
         $res = mysqli_query($link, $query);
         if($res !== false){
             $msg = "Done task.";
@@ -92,13 +82,11 @@ if($link !== false){
         }
         echo $msg;
         echo $err_msg;
-        
-        // mysqli_close($link);
     }
 
-    else{
-        // echo $done_btn;
-    }
+    // else if{
+    //     if
+    // }
 
     // Get data from todo_item
     $msg = "";
@@ -214,9 +202,6 @@ mysqli_close($link);
                 </td>
             </form>
         </tr>";
-        
-        // echo $val["NAME"];
-        // Done process
     }
     var_dump($_POST);
     // echo $data[0];
