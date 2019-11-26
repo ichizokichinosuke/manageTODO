@@ -7,6 +7,20 @@ $db_pass = "manage_pass";
 
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
+function get_val($key){
+    for($i=-1; $i>=0; $i--){
+        if(ctype_digit($key[$i])){
+            continue;
+        }
+        elseif($key[$i] === "_"){
+            return -$i - 1;
+        }
+        else{
+            echo "Error about key.";
+        }
+    }
+}
+
 if($link !== false){
     $msg = "";
     $err_msg = "";
