@@ -69,7 +69,7 @@ if($link !== false){
 
     // Done Task
     if(isset($_POST) !== false){
-        $key = array_keys($_POST)[0];
+        $key = array_key_last($_POST);
         // echo $key;
         // var_dump($_POST);
         if(substr($key, 0, 9) === "done_send"){
@@ -89,8 +89,30 @@ if($link !== false){
 
         // Edit Task
         else if(substr($key, 0, 9) === "edit_task"){
+            // echo $key;
             $val = substr($key, 10, 2);
-            // $query
+            $e_task = $_POST['e_task'];
+            $e_assignees = $_POST['e_assignees'];
+            $e_due = $_POST["e_due"];
+            if(isset($_POST["e_done"]) !== false){
+                $e_done = $_POST["e_done"];
+            }
+            else{
+                $e_done = "NULL";
+            }
+            // IDの行をPOSTされている各値にアップデート
+            $query = " UPDATE todo_item set name=$e_task, USER=$e_assignees, EXPIRE_DATE=$e_due, FINISHED_DATE=$e_done where id=$val";
+            echo $query;
+
+            $res = mysqli_query($link, $query);
+            if($res !== false){
+                $msg = "Update Task.";
+            }
+            else{
+                $err_msg = "Failed to update.";
+            }
+            echo $msg;
+            echo $err_msg;
         }
         else if($key === "cancel_edit"){
             
