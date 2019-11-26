@@ -13,7 +13,7 @@ if($link !== false){
 
     if(isset($_POST) !== false){
         $key = array_keys($_POST)[0];
-        $val = substr($key, 9, 2);
+        $val = substr(array_keys($_POST)[0], 10, 2);
     }
     else{
         $err_msg = "Did not exsits task data.";
@@ -74,8 +74,13 @@ else{
 
         <div align="center">
             <form action="list.php", method="POST">
-                <input type="submit" value="Update" class="button_confirm" name="e_edit">
-                <input type="submit" value="Cancel" class="button_confirm" name="e_cancel">
+
+<?php
+$update_btn = "edit_task_".$val;
+echo "<input type='submit' value='Update' class='button_confirm' name=$update_btn>";
+?>
+                
+                <input type="submit" value="Cancel" class="button_confirm" name="cancel_edit">
             </form>
         </div>
     </body>

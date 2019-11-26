@@ -91,9 +91,14 @@ if($link !== false){
     }
 
     // Edit Task
-    // else if{
-    //     if
-    // }
+    else if(substr($key, 0, 9) === "edit_task"){
+        $val = substr($key, 10, 2);
+        echo $val;
+
+    }
+    else if($key === "cancel_edit"){
+        
+    }
 
     // Get data from todo_item
     $msg = "";
