@@ -95,19 +95,19 @@ if($link !== false){
             $e_assignees = mysqli_real_escape_string($link, $_POST['e_assignees']);
             $e_due = mysqli_real_escape_string($link, $_POST["e_due"]);
             if(isset($_POST["e_done"]) !== false){
-                $e_done = mysqli_real_escape_string($link, $_POST["e_done"]);
+                $e_done = date("Y-m-d", time());
             }
             else{
                 $e_done = mysqli_real_escape_string($link, "null");
             }
-            // IDの行をPOSTされている各値にアップデート
+            
             $query = " UPDATE todo_item set name= "
             . "' " . $e_task . "', "
             . "USER=". "'" . $e_assignees. "', "
-            . "EXPIRE_DATE=$e_due, " 
-            . "FINISHED_DATE=$e_done where id=$val";
-            echo $query;
-
+            . "EXPIRE_DATE=". "'" . $e_due . "'," 
+            . "FINISHED_DATE=" . "'" . $e_done . "'" 
+            . "where id=$val";
+            
             $res = mysqli_query($link, $query);
             if($res !== false){
                 $msg = "Update Task.";
