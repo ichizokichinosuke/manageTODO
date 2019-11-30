@@ -84,8 +84,6 @@ if($link !== false){
     // Done Task
     if(isset($_POST) !== false){
         $key = array_key_last($_POST);
-        // echo $key;
-        // var_dump($_POST);
         if(substr($key, 0, 9) === "done_send"){
             $val = substr($key, 10, 2);
             $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
@@ -189,9 +187,6 @@ mysqli_close($link);
 ?>
         <div align="right" class="welcome">Welcome to here!</div>
         <table border="0" width="90%" class="head_table">
-            <!-- trはTable Rowなので横 -->
-            <!-- thはTable Header -->
-            <!-- tdはTable Data -->
             <tr>
                 <form action="add.php">
                     <td class="submit_button">
@@ -246,8 +241,6 @@ mysqli_close($link);
         $edit_btn = "edit_send_".$val["ID"];
         $delete_btn = "delete_send_".$val["ID"];
 
-        // echo $done_btn;
-
         echo "
             <form action='list.php', method='POST'>
                 <td class='table_button' align='center'>
@@ -266,8 +259,6 @@ mysqli_close($link);
             </form>
         </tr>";
     }
-    var_dump($_POST);
-    // echo $data[0];
 ?>
         </table>
     </body>
