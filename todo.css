@@ -21,7 +21,12 @@ hr {
     font-size: 15px;
     padding: 5px 20px;
     margin: 20px;
+}
 
+#btn_login {
+    font-size: 15px;
+    padding: 5px 20px;
+    margin: 20px;
 }
 
 /* ページ固有のスタイル */
@@ -42,13 +47,8 @@ td.login_button {
     text-align: center;
     padding: 8px;
 }
-/* list */
-/* td.submit_button {
-    padding: 0px 200px 0px 0px;
-} */
 
 th.table_header {
-    /* margin-top: 20px; */
     padding: 15px;
     background-color: #5c5cd4;
     color: #ffffff;

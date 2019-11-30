@@ -185,7 +185,12 @@ mysqli_close($link);
     if($msg !== "") echo "<p>" . $msg . "</p>";
     if($err_msg !== "") echo '<p style="color:#f00;">' . $err_msg . '</p>';
 ?>
-        <div align="right" class="welcome">Welcome to here!</div>
+        <div align="right" class="welcome">
+            <form action="login.php">
+                <input type="submit" value="Logout" id="btn_login">
+            </form>
+            Welcome to here!
+        </div>
         <table border="0" width="90%" class="head_table">
             <tr>
                 <form action="add.php">
