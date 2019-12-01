@@ -15,12 +15,10 @@ if($link !== false){
     else{
         $err_msg = "Failed to load.";
     }
-    // var_dump($res);
     $data = array();
     while($assginees = mysqli_fetch_assoc($res)){
         array_push($data, $assginees);
     }
-    // var_dump($data);
 }
 else{
     echo "Failed to connect database";
@@ -34,7 +32,7 @@ mysqli_close($link);
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Add task</title>
         <link rel="stylesheet" href="todo.css">
-        <script src=""></script>
+        <script src="add.js" type="text/javascript"></script>
     </head>
     <body>
         <h1>Add task</h1>
@@ -45,7 +43,7 @@ mysqli_close($link);
                 <tr>
                     <th class="add_task">Task</th>
                     <td class="add_task" colspan="1">
-                        <input type="text" class="input_box" name="task_name">
+                        <input type="text" class="input_box" name="task_name" id="task_name">
                     </td>
                 </tr>
                 <tr>
@@ -67,13 +65,13 @@ foreach($data as $user){
                 <tr>
                     <th class="add_task">Due</th>
                     <td class="add_task">
-                        <input type="date" class="input_due" name="due">
+                        <input type="date" class="input_due" name="due" id="input_due">
                     </td>
                 </tr>
             </table>
 
             <div align="center">
-                    <input type="submit" value="Register" class="button_confirm" name="add_send">
+                    <input type="submit" value="Register" class="button_confirm" name="add_send" id="add_send">
                     <input type="submit" value="Cancel" class="button_confirm">
             </div>
         </form>
