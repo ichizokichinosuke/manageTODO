@@ -34,7 +34,7 @@ mysqli_close($link);
         <link rel="stylesheet" href="todo.css">
         <script src="add.js" type="text/javascript"></script>
     </head>
-    <body>
+    <body onload="fieldChanged();">
         <h1>Add task</h1>
         <hr>
         <div align="right" class="welcome">Welcome to here!</div>
@@ -43,7 +43,7 @@ mysqli_close($link);
                 <tr>
                     <th class="add_task">Task</th>
                     <td class="add_task" colspan="1">
-                        <input type="text" class="input_box" name="task_name" id="task_name">
+                        <input type="text" class="input_box" name="task_name" id="task_name" onkeyup="fieldChanged();" onchange="fieldChanged();">
                     </td>
                 </tr>
                 <tr>
@@ -65,13 +65,13 @@ foreach($data as $user){
                 <tr>
                     <th class="add_task">Due</th>
                     <td class="add_task">
-                        <input type="date" class="input_due" name="due" id="input_due">
+                        <input type="date" class="input_due" name="due" id="input_due" onkeyup="fieldChanged();" onchange="fieldChanged();">
                     </td>
                 </tr>
             </table>
 
             <div align="center">
-                    <input type="submit" value="Register" class="button_confirm" name="add_send" id="add_send">
+                    <input type="submit" value="Register" class="button_confirm" name="add_send" id="add_send" onkeyup="fieldChanged();" onchange="fieldChanged();">
                     <input type="submit" value="Cancel" class="button_confirm">
             </div>
         </form>

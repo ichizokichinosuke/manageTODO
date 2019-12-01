@@ -14,6 +14,7 @@ function fieldChanged(){
     else{
         regist.removeAttribute("disabled");
     }
+    // console.log(taskName);
 }
 
 function getField(fieldName){
@@ -21,5 +22,5 @@ function getField(fieldName){
     if(field == undefined){
         throw new Error("Element was not found: " + fieldName);
     }
-    return field
+    return field;
 }
