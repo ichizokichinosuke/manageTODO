@@ -8,12 +8,14 @@ $db_pass = "manage_pass";
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
 function get_val($key){
-    for($i=-1; $i>=0; $i--){
-        if(ctype_digit($key[$i])){
-            continue;
+    $val = "";
+    for($i=1; $i<=strlen($key); $i++){
+        if(ctype_digit($key[-$i])){
+            $val .= $key[-$i];
         }
-        elseif($key[$i] === "_"){
-            return -$i - 1;
+        elseif(ctype_digit($key[-$i]) !== true){
+
+            return $val;
         }
         else{
             echo "Error about key.";
@@ -85,7 +87,7 @@ if($link !== false){
     if(isset($_POST) !== false){
         $key = array_key_last($_POST);
         if(substr($key, 0, 9) === "done_send"){
-            $val = substr($key, 10, 2);
+            $val = get_val($key);
             $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
             . " '" . $val . "' ";
             $res = mysqli_query($link, $query);
@@ -102,7 +104,7 @@ if($link !== false){
         // Edit Task
         else if(substr($key, 0, 9) === "edit_task"){
             // echo $key;
-            $val = substr($key, -2, 2);
+            $val = get_val($key);
             $e_task = mysqli_real_escape_string($link, $_POST['e_task']);
             $e_assignees = mysqli_real_escape_string($link, $_POST['e_assignees']);
             $e_due = mysqli_real_escape_string($link, $_POST["e_due"]);
@@ -136,7 +138,7 @@ if($link !== false){
 
         // Delete Task.
         else if(substr($key, 0, 5) === "d_yes"){
-            $val = substr($key, -2, 2);
+            $val = get_val($key);
             $query = " DELETE from todo_item where id = "
             . "'" . $val . "'";
             $res = mysqli_query($link, $query);
