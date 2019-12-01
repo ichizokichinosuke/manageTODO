@@ -1,3 +1,34 @@
+<?php
+$db_host = "localhost";
+$db_name = "manage_db";
+$db_user = "manage_user";
+$db_pass = "manage_pass";
+
+$link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+
+if($link !== false){
+    $query = " SELECT USER from todo_item GROUP BY USER ";
+    $res = mysqli_query($link, $query);
+    if($res !== false){
+        $msg = "Done to load.";
+    }
+    else{
+        $err_msg = "Failed to load.";
+    }
+    // var_dump($res);
+    $data = array();
+    while($assginees = mysqli_fetch_assoc($res)){
+        array_push($data, $assginees);
+    }
+    // var_dump($data);
+}
+else{
+    echo "Failed to connect database";
+}
+
+mysqli_close($link);
+?>
+
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -21,9 +52,13 @@
                     <th class="add_task">Assignees</th>
                     <td class="add_task" colspan="1">
                         <select id="" class="input_assignees" name="user_id_add">
-                            <option value="user_01">user_01</option>
-                            <option value="user_02">user_02</option>
-                            <option value="user_03">user_03</option>
+<?php
+foreach($data as $user){
+    $user_name = $user["USER"];
+    echo "<option value=$user_name>$user_name</option>";
+}
+?>
+                            
                         </select>
                         <br>or<br>
                         <input type="text" class="input_assignees" name="user_id_add">

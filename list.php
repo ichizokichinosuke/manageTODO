@@ -134,6 +134,7 @@ if($link !== false){
             
         }
 
+        // Delete Task.
         else if(substr($key, 0, 5) === "d_yes"){
             $val = substr($key, -2, 2);
             $query = " DELETE from todo_item where id = "
@@ -224,46 +225,46 @@ mysqli_close($link);
                 <th class="table_header" colspan="3">Operation</th>
             </tr>
 <?php
-    foreach($data as $val){
-        echo "<tr>";
-        echo "<th class='table_contents'>";
-        echo $val["NAME"];
-        echo "</th>";
+foreach($data as $val){
+    echo "<tr>";
+    echo "<th class='table_contents'>";
+    echo $val["NAME"];
+    echo "</th>";
 
-        echo "<th class='table_contents'>";
-        echo $val["USER"];
-        echo "</th>";
-        
-        echo "<th class='table_contents'>";
-        echo $val["EXPIRE_DATE"];
-        echo "</th>";
+    echo "<th class='table_contents'>";
+    echo $val["USER"];
+    echo "</th>";
+    
+    echo "<th class='table_contents'>";
+    echo $val["EXPIRE_DATE"];
+    echo "</th>";
 
-        echo "<th class='table_contents'>";
-        echo $val["FINISHED_DATE"];
-        echo "</th>";
+    echo "<th class='table_contents'>";
+    echo $val["FINISHED_DATE"];
+    echo "</th>";
 
-        $done_btn = "done_send_".$val["ID"];
-        $edit_btn = "edit_send_".$val["ID"];
-        $delete_btn = "delete_send_".$val["ID"];
+    $done_btn = "done_send_".$val["ID"];
+    $edit_btn = "edit_send_".$val["ID"];
+    $delete_btn = "delete_send_".$val["ID"];
 
-        echo "
-            <form action='list.php', method='POST'>
-                <td class='table_button' align='center'>
-                    <input type='submit' value='Done' name=$done_btn>
-                </td>
-            </form>
-            <form action='edit.php', method='POST'>
-                <td class='table_button' align='center'>
-                    <input type='submit' value='Edit' name=$edit_btn>
-                </td>
-            </form>
-            <form action='delete.php', method='POST'>
-                <td class='table_button' align='center'>
-                    <input type='submit' value='Delete' name=$delete_btn>
-                </td>
-            </form>
-        </tr>";
-    }
+    echo "
+        <form action='list.php', method='POST'>
+            <td class='table_button' align='center'>
+                <input type='submit' value='Done' name=$done_btn>
+            </td>
+        </form>
+        <form action='edit.php', method='POST'>
+            <td class='table_button' align='center'>
+                <input type='submit' value='Edit' name=$edit_btn>
+            </td>
+        </form>
+        <form action='delete.php', method='POST'>
+            <td class='table_button' align='center'>
+                <input type='submit' value='Delete' name=$delete_btn>
+            </td>
+        </form>
+    </tr>";
+}
 ?>
         </table>
     </body>
