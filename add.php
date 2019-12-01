@@ -9,7 +9,7 @@
         <h1>Add task</h1>
         <hr>
         <div align="right" class="welcome">Welcome to here!</div>
-        <form action="list.php" method="post">
+        <form action="list.php" method="POST">
             <table border="0" width="90%">
                 <tr>
                     <th class="add_task">Task</th>
@@ -25,6 +25,8 @@
                             <option value="user_02">user_02</option>
                             <option value="user_03">user_03</option>
                         </select>
+                        <br>or<br>
+                        <input type="text" class="input_assignees" name="user_id_add">
                     </td>
                 </tr>
                 <tr>

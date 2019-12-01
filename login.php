@@ -25,9 +25,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="login_button">
-                            <!-- <form action="list.php"> -->
                                 <input type="submit" name="send" value="Login" id="login">
-                            <!-- </form> -->
                         </td>
                     </tr>
                 </form>
