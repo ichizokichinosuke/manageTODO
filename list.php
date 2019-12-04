@@ -112,13 +112,20 @@ if($link !== false){
         // Edit Task
         else if(substr($key, 0, 9) === "edit_task"){
             // echo $key;
-            var_dump($_POST);
+            // var_dump($_POST);
             $val = get_val($key);
             $e_task = mysqli_real_escape_string($link, $_POST['e_task']);
-            $e_assignees = mysqli_real_escape_string($link, $_POST['e_assignees']);
             // echo $e_assignees;
             $e_due = mysqli_real_escape_string($link, $_POST["e_due"]);
             // echo $_POST["e_done"];
+
+            if($_POST["e_assignees_input"] !== ""){
+                $e_assignees = $_POST["e_assignees_input"];
+            }
+            else{
+                $e_assignees = $_POST["e_assignees_select"];
+            }
+
             if($_POST["e_done"] !== "yet"){
                 $e_done = date("Y-m-d", time());
                 $query = " UPDATE todo_item set name= "

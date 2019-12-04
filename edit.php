@@ -77,7 +77,7 @@ mysqli_close($link);
                 <tr>
                     <th class="add_task">Assignees</th>
                     <td class="add_task" colspan="1">
-                        <select name="e_assignees" id="" class="input_assignees">
+                        <select name="e_assignees_select" id="" class="input_assignees">
 <?php
 foreach($data as $user){
     $user_name = $user["USER"];
@@ -86,7 +86,7 @@ foreach($data as $user){
 ?>
                         </select>
                         <br>or<br>
-                        <input type="text" class="input_assignees" name="e_assignees">
+                        <input type="text" class="input_assignees" name="e_assignees_input">
                     </td>
                 </tr>
                 <tr>
