@@ -52,27 +52,26 @@ else{
     echo "Failed to connect database.";
 }
 
+mysqli_close($link);
 ?>
-
-
 
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Edit task</title>
         <link rel="stylesheet" href="todo.css">
-        <script src=""></script>
+        <script src="js/add.js" type="text/javascript"></script>
     </head>
-    <body>
+    <body onload="fieldChanged();">
         <h1>Edit task</h1>
         <hr>
         <div align="right" class="welcome">Welcome to here!</div>
-        <form action="list.php", method="POST">
+        <form action="list.php", method="POST" name="edit_form" id="edit_form">
             <table border="0" width="90%">
                 <tr>
                     <th class="add_task">Task</th>
                     <td class="add_task" colspan="1">
-                        <input type="text" class="input_box" name="e_task">
+                        <input type="text" class="input_box" name="e_task" id="task_name" onkeyup="fieldChanged();" onchange="fieldChanged();">
                     </td>
                 </tr>
                 <tr>
@@ -85,35 +84,33 @@ foreach($data as $user){
     echo "<option value=$user_name>$user_name</option>";
 }
 ?>
-        alue="user_03">user_03</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <th class="add_task">Due</th>
                     <td class="add_task">
-                        <input type="date" class="input_due" name="e_due">
+                        <input type="date" class="input_due" name="e_due" id="input_due" onkeyup="fieldChanged();" onchange="fieldChanged();">
                     </td>
                 </tr>
                 <tr>
                     <th class="add_task">Done</th>
                     <td class="add_task">
                         Yes
-                        <input type="checkbox" name="e_done">
+                        <input type="checkbox" name="e_done" id="e_done" onclick="fieldChanged();">
                         No
-                        <input type="checkbox" name="e_yet">
+                        <input type="checkbox" name="e_yet" id="e_yet" onclick="fieldChanged();">
                     </td>
                 </tr>
             </table>
 
-            <div align="center">
-                
+            <div align="center">   
 
 <?php
 $update_btn = "edit_task_".$val;
-echo "<input type='submit' value='Update' class='button_confirm' name=$update_btn>";
+echo "<input type='submit' value='Update' class='button_confirm' name=$update_btn id='add_send'>";
 ?>
-                
+
                 <input type="submit" value="Cancel" class="button_confirm" name="cancel_edit">
             </div>
         </form>

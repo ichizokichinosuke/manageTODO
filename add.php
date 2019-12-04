@@ -55,8 +55,7 @@ foreach($data as $user){
     $user_name = $user["USER"];
     echo "<option value=$user_name>$user_name</option>";
 }
-?>
-                            
+?>                         
                         </select>
                         <br>or<br>
                         <input type="text" class="input_assignees" name="user_id_add">
@@ -71,8 +70,8 @@ foreach($data as $user){
             </table>
 
             <div align="center">
-                    <input type="submit" value="Register" class="button_confirm" name="add_send" id="add_send" onkeyup="fieldChanged();" onchange="fieldChanged();">
-                    <input type="submit" value="Cancel" class="button_confirm">
+                <input type="submit" value="Register" class="button_confirm" name="add_send" id="add_send">
+                <input type="submit" value="Cancel" class="button_confirm">
             </div>
         </form>
     </body>
