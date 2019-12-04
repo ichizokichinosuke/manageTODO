@@ -114,18 +114,21 @@ if($link !== false){
             // echo $_POST["e_done"];
             if($_POST["e_done"] !== "yet"){
                 $e_done = date("Y-m-d", time());
+                $query = " UPDATE todo_item set name= "
+                . "' " . $e_task . "', "
+                . "USER=". "'" . $e_assignees. "', "
+                . "EXPIRE_DATE=". "'" . $e_due . "'," 
+                . "FINISHED_DATE=" . "'" . $e_done . "'" 
+                . "where id=$val";
             }
             else{
-                $e_done = mysqli_real_escape_string($link, "null");
-                // echo "fuck";
+                // $e_done = mysqli_real_escape_string($link, "null");
+                $query = " UPDATE todo_item set name= "
+                . "' " . $e_task . "', "
+                . "USER=". "'" . $e_assignees. "', "
+                . "EXPIRE_DATE=". "'" . $e_due . "'" 
+                . "where id=$val";
             }
-            
-            $query = " UPDATE todo_item set name= "
-            . "' " . $e_task . "', "
-            . "USER=". "'" . $e_assignees. "', "
-            . "EXPIRE_DATE=". "'" . $e_due . "'," 
-            . "FINISHED_DATE=" . "'" . $e_done . "'" 
-            . "where id=$val";
             
             $res = mysqli_query($link, $query);
             if($res !== false){
