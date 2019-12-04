@@ -85,6 +85,8 @@ foreach($data as $user){
 }
 ?>
                         </select>
+                        <br>or<br>
+                        <input type="text" class="input_assignees" name="e_assignees">
                     </td>
                 </tr>
                 <tr>
@@ -97,13 +99,12 @@ foreach($data as $user){
                     <th class="add_task">Done</th>
                     <td class="add_task">
                         Yes
-                        <input type="checkbox" name="e_done" id="e_done" onclick="fieldChanged();">
+                        <input type="radio" name="e_done" id="e_done" value="done">
                         No
-                        <input type="checkbox" name="e_yet" id="e_yet" onclick="fieldChanged();">
+                        <input type="radio" name="e_done" id="e_yet" value="yet">
                     </td>
                 </tr>
             </table>
-
             <div align="center">   
 
 <?php
