@@ -14,7 +14,7 @@ function get_val($key){
             $val .= $key[-$i];
         }
         elseif(ctype_digit($key[-$i]) !== true){
-
+            $val = strrev($val);
             return $val;
         }
         else{
@@ -88,6 +88,7 @@ if($link !== false){
         $key = array_key_last($_POST);
         if(substr($key, 0, 9) === "done_send"){
             $val = get_val($key);
+            echo $val;
             $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
             . " '" . $val . "' ";
             $res = mysqli_query($link, $query);
