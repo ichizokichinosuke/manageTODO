@@ -109,13 +109,15 @@ if($link !== false){
             $val = get_val($key);
             $e_task = mysqli_real_escape_string($link, $_POST['e_task']);
             $e_assignees = mysqli_real_escape_string($link, $_POST['e_assignees']);
-            echo $e_assignees;
+            // echo $e_assignees;
             $e_due = mysqli_real_escape_string($link, $_POST["e_due"]);
-            if(isset($_POST["e_done"]) !== false){
+            // echo $_POST["e_done"];
+            if($_POST["e_done"] !== "yet"){
                 $e_done = date("Y-m-d", time());
             }
             else{
                 $e_done = mysqli_real_escape_string($link, "null");
+                // echo "fuck";
             }
             
             $query = " UPDATE todo_item set name= "
