@@ -32,7 +32,7 @@ mysqli_close($link);
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Add task</title>
         <link rel="stylesheet" href="todo.css">
-        <script src="add.js" type="text/javascript"></script>
+        <script src="js/add.js" type="text/javascript"></script>
     </head>
     <body onload="fieldChanged();">
         <h1>Add task</h1>

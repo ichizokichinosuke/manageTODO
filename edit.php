@@ -7,12 +7,42 @@ $db_pass = "manage_pass";
 
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
+function get_val($key){
+    $val = "";
+    for($i=1; $i<=strlen($key); $i++){
+        if(ctype_digit($key[-$i])){
+            $val .= $key[-$i];
+        }
+        elseif(ctype_digit($key[-$i]) !== true){
+            $val = strrev($val);
+            return $val;
+        }
+        else{
+            echo "Error about key.";
+        }
+    }
+}
+
 if($link !== false){
     $msg = "";
     $err_msg = "";
 
     if(isset($_POST) !== false){
-        $val = substr(array_keys($_POST)[0], -2, 2);
+        $key = array_key_last($_POST);
+        $val = get_val($key);
+
+        $query = " SELECT USER from todo_item GROUP BY USER ";
+        $res = mysqli_query($link, $query);
+        if($res !== false){
+            $msg = "Done to load.";
+        }
+        else{
+            $err_msg = "Failed to load.";
+        }
+        $data = array();
+        while($assginees = mysqli_fetch_assoc($res)){
+            array_push($data, $assginees);
+        }
     }
     else{
         $err_msg = "Did not exsits task data.";
@@ -49,9 +79,13 @@ else{
                     <th class="add_task">Assignees</th>
                     <td class="add_task" colspan="1">
                         <select name="e_assignees" id="" class="input_assignees">
-                                <option value="user_01">user_01</option>
-                                <option value="user_02">user_02</option>
-                                <option value="user_03">user_03</option>
+<?php
+foreach($data as $user){
+    $user_name = $user["USER"];
+    echo "<option value=$user_name>$user_name</option>";
+}
+?>
+        alue="user_03">user_03</option>
                         </select>
                     </td>
                 </tr>
