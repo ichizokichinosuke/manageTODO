@@ -49,7 +49,7 @@ mysqli_close($link);
                 <tr>
                     <th class="add_task">Assignees</th>
                     <td class="add_task" colspan="1">
-                        <select id="" class="input_assignees" name="user_id_add">
+                        <select id="" class="input_assignees" name="user_id_add_select">
 <?php
 foreach($data as $user){
     $user_name = $user["USER"];
@@ -58,7 +58,7 @@ foreach($data as $user){
 ?>                         
                         </select>
                         <br>or<br>
-                        <input type="text" class="input_assignees" name="user_id_add">
+                        <input type="text" class="input_assignees" name="user_id_add_input">
                     </td>
                 </tr>
                 <tr>

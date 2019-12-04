@@ -57,8 +57,15 @@ if($link !== false){
     // Regist data from add.php
     if(isset($_POST["add_send"]) !== false){
         $task_name = $_POST["task_name"];
-        $user_id = $_POST["user_id_add"];
         $due = $_POST["due"];
+        if($_POST["user_id_add_input"] !== ""){
+            $user_id = $_POST["user_id_add_input"];
+        }
+        else{
+            $user_id = $_POST["user_id_add_select"];
+        }
+        // var_dump($user_id);
+        // var_dump($_POST);
 
         if($task_name !== "" && $user_id !== "" && $due !== ""){
             $query = " INSERT INTO todo_item ("
