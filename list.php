@@ -8,12 +8,14 @@ $db_pass = "manage_pass";
 $link = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 
 function get_val($key){
-    for($i=-1; $i>=0; $i--){
-        if(ctype_digit($key[$i])){
-            continue;
+    $val = "";
+    for($i=1; $i<=strlen($key); $i++){
+        if(ctype_digit($key[-$i])){
+            $val .= $key[-$i];
         }
-        elseif($key[$i] === "_"){
-            return -$i - 1;
+        elseif(ctype_digit($key[-$i]) !== true){
+            $val = strrev($val);
+            return $val;
         }
         else{
             echo "Error about key.";
@@ -55,9 +57,14 @@ if($link !== false){
     // Regist data from add.php
     if(isset($_POST["add_send"]) !== false){
         $task_name = $_POST["task_name"];
-        $user_id = $_POST["user_id_add"];
         $due = $_POST["due"];
-
+        if($_POST["user_id_add_input"] !== ""){
+            $user_id = $_POST["user_id_add_input"];
+        }
+        else{
+            $user_id = $_POST["user_id_add_select"];
+        }
+        
         if($task_name !== "" && $user_id !== "" && $due !== ""){
             $query = " INSERT INTO todo_item ("
                 . " NAME, "
@@ -85,7 +92,7 @@ if($link !== false){
     if(isset($_POST) !== false){
         $key = array_key_last($_POST);
         if(substr($key, 0, 9) === "done_send"){
-            $val = substr($key, 10, 2);
+            $val = get_val($key);
             $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
             . " '" . $val . "' ";
             $res = mysqli_query($link, $query);
@@ -101,24 +108,34 @@ if($link !== false){
 
         // Edit Task
         else if(substr($key, 0, 9) === "edit_task"){
-            // echo $key;
-            $val = substr($key, -2, 2);
+            $val = get_val($key);
             $e_task = mysqli_real_escape_string($link, $_POST['e_task']);
-            $e_assignees = mysqli_real_escape_string($link, $_POST['e_assignees']);
             $e_due = mysqli_real_escape_string($link, $_POST["e_due"]);
-            if(isset($_POST["e_done"]) !== false){
-                $e_done = date("Y-m-d", time());
+            
+            if($_POST["e_assignees_input"] !== ""){
+                $e_assignees = $_POST["e_assignees_input"];
             }
             else{
-                $e_done = mysqli_real_escape_string($link, "null");
+                $e_assignees = $_POST["e_assignees_select"];
             }
-            
-            $query = " UPDATE todo_item set name= "
-            . "' " . $e_task . "', "
-            . "USER=". "'" . $e_assignees. "', "
-            . "EXPIRE_DATE=". "'" . $e_due . "'," 
-            . "FINISHED_DATE=" . "'" . $e_done . "'" 
-            . "where id=$val";
+
+            if($_POST["e_done"] !== "yet"){
+                $e_done = date("Y-m-d", time());
+                $query = " UPDATE todo_item set name= "
+                . "' " . $e_task . "', "
+                . "USER=". "'" . $e_assignees. "', "
+                . "EXPIRE_DATE=". "'" . $e_due . "'," 
+                . "FINISHED_DATE=" . "'" . $e_done . "'" 
+                . "where id=$val";
+            }
+            else{
+                $query = " UPDATE todo_item set name= "
+                . "' " . $e_task . "', "
+                . "USER=". "'" . $e_assignees. "', "
+                . "EXPIRE_DATE=". "'" . $e_due . "', "
+                . "FINISHED_DATE=null " 
+                . "where id=$val";
+            }
             
             $res = mysqli_query($link, $query);
             if($res !== false){
@@ -134,8 +151,9 @@ if($link !== false){
             
         }
 
+        // Delete Task.
         else if(substr($key, 0, 5) === "d_yes"){
-            $val = substr($key, -2, 2);
+            $val = get_val($key);
             $query = " DELETE from todo_item where id = "
             . "'" . $val . "'";
             $res = mysqli_query($link, $query);
@@ -185,7 +203,12 @@ mysqli_close($link);
     if($msg !== "") echo "<p>" . $msg . "</p>";
     if($err_msg !== "") echo '<p style="color:#f00;">' . $err_msg . '</p>';
 ?>
-        <div align="right" class="welcome">Welcome to here!</div>
+        <div align="right" class="welcome">
+            <form action="login.php">
+                <input type="submit" value="Logout" id="btn_login">
+            </form>
+            Welcome to here!
+        </div>
         <table border="0" width="90%" class="head_table">
             <tr>
                 <form action="add.php">
@@ -219,46 +242,46 @@ mysqli_close($link);
                 <th class="table_header" colspan="3">Operation</th>
             </tr>
 <?php
-    foreach($data as $val){
-        echo "<tr>";
-        echo "<th class='table_contents'>";
-        echo $val["NAME"];
-        echo "</th>";
+foreach($data as $val){
+    echo "<tr>";
+    echo "<th class='table_contents'>";
+    echo $val["NAME"];
+    echo "</th>";
 
-        echo "<th class='table_contents'>";
-        echo $val["USER"];
-        echo "</th>";
-        
-        echo "<th class='table_contents'>";
-        echo $val["EXPIRE_DATE"];
-        echo "</th>";
+    echo "<th class='table_contents'>";
+    echo $val["USER"];
+    echo "</th>";
+    
+    echo "<th class='table_contents'>";
+    echo $val["EXPIRE_DATE"];
+    echo "</th>";
 
-        echo "<th class='table_contents'>";
-        echo $val["FINISHED_DATE"];
-        echo "</th>";
+    echo "<th class='table_contents'>";
+    echo $val["FINISHED_DATE"];
+    echo "</th>";
 
-        $done_btn = "done_send_".$val["ID"];
-        $edit_btn = "edit_send_".$val["ID"];
-        $delete_btn = "delete_send_".$val["ID"];
+    $done_btn = "done_send_".$val["ID"];
+    $edit_btn = "edit_send_".$val["ID"];
+    $delete_btn = "delete_send_".$val["ID"];
 
-        echo "
-            <form action='list.php', method='POST'>
-                <td class='table_button' align='center'>
-                    <input type='submit' value='Done' name=$done_btn>
-                </td>
-            </form>
-            <form action='edit.php', method='POST'>
-                <td class='table_button' align='center'>
-                    <input type='submit' value='Edit' name=$edit_btn>
-                </td>
-            </form>
-            <form action='delete.php', method='POST'>
-                <td class='table_button' align='center'>
-                    <input type='submit' value='Delete' name=$delete_btn>
-                </td>
-            </form>
-        </tr>";
-    }
+    echo "
+        <form action='list.php', method='POST'>
+            <td class='table_button' align='center'>
+                <input type='submit' value='Done' name=$done_btn>
+            </td>
+        </form>
+        <form action='edit.php', method='POST'>
+            <td class='table_button' align='center'>
+                <input type='submit' value='Edit' name=$edit_btn>
+            </td>
+        </form>
+        <form action='delete.php', method='POST'>
+            <td class='table_button' align='center'>
+                <input type='submit' value='Delete' name=$delete_btn>
+            </td>
+        </form>
+    </tr>";
+}
 ?>
         </table>
     </body>

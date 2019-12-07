@@ -3,7 +3,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <title>Login</title>
         <link rel="stylesheet" href="todo.css">
-        <script src="login.js" type="text/javascript"></script>
+        <script src="js/login.js" type="text/javascript"></script>
     </head>
     <body onload="fieldChanged();">
         <h1>Login</h1>
@@ -25,9 +25,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" class="login_button">
-                            <!-- <form action="list.php"> -->
                                 <input type="submit" name="send" value="Login" id="login">
-                            <!-- </form> -->
                         </td>
                     </tr>
                 </form>
