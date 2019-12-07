@@ -43,6 +43,17 @@ if($link !== false){
         while($assginees = mysqli_fetch_assoc($res)){
             array_push($data, $assginees);
         }
+
+        $edit_query = " SELECT * from todo_item where id=$val ";
+        $select_res = mysqli_query($link, $edit_query);
+        if($select_res !== false){
+            $msg = "Done to load task.";
+        }
+        else{
+            $err_msg = "Failed to load task.";
+        }
+        $task_info = mysqli_fetch_assoc($select_res);
+        var_dump($task_info);
     }
     else{
         $err_msg = "Did not exsits task data.";
@@ -71,7 +82,10 @@ mysqli_close($link);
                 <tr>
                     <th class="add_task">Task</th>
                     <td class="add_task" colspan="1">
-                        <input type="text" class="input_box" name="e_task" id="task_name" onkeyup="fieldChanged();" onchange="fieldChanged();">
+<?php
+$task_info_name = $task_info['NAME'];
+echo "<input type='text' class='input_box' name='e_task' id='task_name' onkeyup='fieldChanged();' onchange='fieldChanged();' value=$task_info_name>";
+?>
                     </td>
                 </tr>
                 <tr>
@@ -81,7 +95,12 @@ mysqli_close($link);
 <?php
 foreach($data as $user){
     $user_name = $user["USER"];
-    echo "<option value=$user_name>$user_name</option>";
+    if($user_name !== $task_info['USER']){
+        echo "<option value=$user_name>$user_name</option>";
+    }
+    else{
+        echo "<option value=$user_name selected>$user_name</option>";
+    }
 }
 ?>
                         </select>
@@ -92,16 +111,29 @@ foreach($data as $user){
                 <tr>
                     <th class="add_task">Due</th>
                     <td class="add_task">
-                        <input type="date" class="input_due" name="e_due" id="input_due" onkeyup="fieldChanged();" onchange="fieldChanged();">
+<?php
+$task_info_due = $task_info["EXPIRE_DATE"];
+echo "<input type='date' class='input_due' name='e_due' id='input_due' onkeyup='fieldChanged();' onchange='fieldChanged();' value=$task_info_due>";
+?>
                     </td>
                 </tr>
                 <tr>
                     <th class="add_task">Done</th>
                     <td class="add_task">
-                        Yes
-                        <input type="radio" name="e_done" id="e_done" value="done">
-                        No
-                        <input type="radio" name="e_done" id="e_yet" value="yet">
+<?php
+if(isset($task_info['FINISHED_DATE']) !== false){
+    echo 'Yes
+        <input type="radio" name="e_done" id="e_done" value="done">
+        No
+        <input type="radio" name="e_done" id="e_yet" value="yet" checked>';
+}
+else{
+    echo 'Yes
+        <input type="radio" name="e_done" id="e_done" value="done" checked>
+        No
+        <input type="radio" name="e_done" id="e_yet" value="yet">';
+}
+?>
                     </td>
                 </tr>
             </table>

@@ -95,7 +95,7 @@ if($link !== false){
         $key = array_key_last($_POST);
         if(substr($key, 0, 9) === "done_send"){
             $val = get_val($key);
-            echo $val;
+            // echo $val;
             $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
             . " '" . $val . "' ";
             $res = mysqli_query($link, $query);
