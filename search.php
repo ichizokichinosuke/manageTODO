@@ -15,15 +15,12 @@ if($link !== false){
         $query = "SELECT * from todo_item";
         $res = mysqli_query($link, $query);
         $data = array();
-        // 0でもEmptyと判定するため
+        // To recognize it empty even 0
         if(empty($search_task) !== true || $search_task === '0'){
             while($row = mysqli_fetch_assoc($res)){
                 if(strpos($row["NAME"], $search_task) !== false){
                     array_push($data, $row);
                 }
-                // if($search_task === $row["NAME"]){
-                //     array_push($data, $row);
-                // }
                 arsort($data);
             }
         }
