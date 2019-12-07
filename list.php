@@ -64,9 +64,7 @@ if($link !== false){
         else{
             $user_id = $_POST["user_id_add_select"];
         }
-        // var_dump($user_id);
-        // var_dump($_POST);
-
+        
         if($task_name !== "" && $user_id !== "" && $due !== ""){
             $query = " INSERT INTO todo_item ("
                 . " NAME, "
@@ -95,7 +93,6 @@ if($link !== false){
         $key = array_key_last($_POST);
         if(substr($key, 0, 9) === "done_send"){
             $val = get_val($key);
-            // echo $val;
             $query = " UPDATE todo_item set FINISHED_DATE=now() where id="
             . " '" . $val . "' ";
             $res = mysqli_query($link, $query);
@@ -111,14 +108,10 @@ if($link !== false){
 
         // Edit Task
         else if(substr($key, 0, 9) === "edit_task"){
-            // echo $key;
-            // var_dump($_POST);
             $val = get_val($key);
             $e_task = mysqli_real_escape_string($link, $_POST['e_task']);
-            // echo $e_assignees;
             $e_due = mysqli_real_escape_string($link, $_POST["e_due"]);
-            // echo $_POST["e_done"];
-
+            
             if($_POST["e_assignees_input"] !== ""){
                 $e_assignees = $_POST["e_assignees_input"];
             }
@@ -136,7 +129,6 @@ if($link !== false){
                 . "where id=$val";
             }
             else{
-                // $e_done = mysqli_real_escape_string($link, "null");
                 $query = " UPDATE todo_item set name= "
                 . "' " . $e_task . "', "
                 . "USER=". "'" . $e_assignees. "', "
