@@ -14,15 +14,6 @@ function fieldChanged(){
     else{
         regist.removeAttribute("disabled");
     }
-
-    var doneBtn = getField("e_done");
-    var yetBtn = getField("e_yet");
-    if(document.edit_form.e_done.checked){
-        yetBtn.setAttribute("disabled", "disabled");
-    }
-    else if(document.edit_form.e_yet.checked){
-        doneBtn.setAttribute("disabled", "disabled");
-    }
 }
 
 function getField(fieldName){

@@ -121,17 +121,17 @@ echo "<input type='date' class='input_due' name='e_due' id='input_due' onkeyup='
                     <th class="add_task">Done</th>
                     <td class="add_task">
 <?php
-if(isset($task_info['FINISHED_DATE']) !== false){
+if(isset($task_info['FINISHED_DATE']) !== true){
     echo 'Yes
-        <input type="radio" name="e_done" id="e_done" value="done">
+        <input type="radio" name="e_done" value="done">
         No
-        <input type="radio" name="e_done" id="e_yet" value="yet" checked>';
+        <input type="radio" name="e_done" value="yet" checked="checked">';
 }
 else{
     echo 'Yes
-        <input type="radio" name="e_done" id="e_done" value="done" checked>
+        <input type="radio" name="e_done" value="done" checked="checked">
         No
-        <input type="radio" name="e_done" id="e_yet" value="yet">';
+        <input type="radio" name="e_done" value="yet">';
 }
 ?>
                     </td>

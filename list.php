@@ -140,7 +140,8 @@ if($link !== false){
                 $query = " UPDATE todo_item set name= "
                 . "' " . $e_task . "', "
                 . "USER=". "'" . $e_assignees. "', "
-                . "EXPIRE_DATE=". "'" . $e_due . "'" 
+                . "EXPIRE_DATE=". "'" . $e_due . "', "
+                . "FINISHED_DATE=null " 
                 . "where id=$val";
             }
             
