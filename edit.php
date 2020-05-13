@@ -53,7 +53,6 @@ if($link !== false){
             $err_msg = "Failed to load task.";
         }
         $task_info = mysqli_fetch_assoc($select_res);
-        var_dump($task_info);
     }
     else{
         $err_msg = "Did not exsits task data.";
@@ -82,6 +81,10 @@ mysqli_close($link);
                 <tr>
                     <th class="add_task">Task</th>
                     <td class="add_task" colspan="1">
+<?php
+$task_info_name = $task_info['NAME'];
+echo "<input type='text' class='input_box' name='e_task' id='task_name' onkeyup='fieldChanged();' onchange='fieldChanged();' value=$task_info_name>";
+?>
                     </td>
                 </tr>
                 <tr>
