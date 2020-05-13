@@ -82,10 +82,6 @@ mysqli_close($link);
                 <tr>
                     <th class="add_task">Task</th>
                     <td class="add_task" colspan="1">
-<?php
-$task_info_name = $task_info['NAME'];
-echo "<input type='text' class='input_box' name='e_task' id='task_name' onkeyup='fieldChanged();' onchange='fieldChanged();' value=$task_info_name>";
-?>
                     </td>
                 </tr>
                 <tr>
@@ -137,7 +133,7 @@ else{
                     </td>
                 </tr>
             </table>
-            <div align="center">   
+            <div align="center">
 
 <?php
 $update_btn = "edit_task_".$val;
